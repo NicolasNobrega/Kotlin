@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.TextView
 import org.json.JSONObject
-import java.net.HttpURLConnection
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         val checked = selectedCurrency.checkedRadioButtonId
 
         val currency = when(checked) {
-            R.id.radio_usd ->{ "UDS" }
+            R.id.radio_usd ->{ "USD" }
             R.id.radio_eur ->{ "EUR" }
             else           ->{ "CLP" }
         }
@@ -64,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                runOnUiThread{
                    val res = obj.getDouble("${currency}_BRL")
 
-                   result.text = "${value.toDouble()} * $res"
+                   result.text = "R$${"%.4f".format(value.toDouble() * res)}"
                    result.visibility = View.VISIBLE
                }
             }finally {

@@ -37,7 +37,7 @@ class PokemonAdapter(
 
             //TODO: Load image with Glide
 
-            tvNumber.text = "N° ${item.number}"
+            tvNumber.text = "N° ${item.formattedNumber}"
             tvName.text = item.name
             tvType1.text = item.types[0].name
 

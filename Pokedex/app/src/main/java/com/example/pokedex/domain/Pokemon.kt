@@ -1,11 +1,13 @@
 package com.example.pokedex.domain
 
 data class Pokemon(
-    val imageURL: String? = null,
-    val number: Int? = null,
+    val number: Int,
     val name: String,
-    val url: String,
-    val types: List<PokemonType>? = null
+    val types: List<PokemonType>
 ) {
+
     val formattedNumber = number.toString().padStart(3, '0')
+
+    val imageURL = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/$formattedNumber.png"
+
 }

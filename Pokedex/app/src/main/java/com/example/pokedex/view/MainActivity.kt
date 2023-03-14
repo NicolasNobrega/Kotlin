@@ -36,11 +36,28 @@ class MainActivity : AppCompatActivity() {
 
         pokemonsApiResult?.results?.let {
 
+            val pokemons: List<Pokemon?> = it.map {pokemonResult ->
+                val number = pokemonResult.url
+                    .replace("https://pokeapi.co/api/v2/pokemon/", "")
+                    .replace("/", "").toInt()
+                val pokemonApiResult = PokemonRepository.getPokemon(number)
+
+                pokemonApiResult?.let {
+                    Pokemon(
+                        pokemonApiResult.id,
+                        pokemonApiResult.name,
+                        pokemonApiResult.types.map{type ->
+                            type.type
+                        }
+                    )
+                }
+            }
+
             val layoutManager = LinearLayoutManager(this)
 
             recyclerView.post{
                 recyclerView.layoutManager = layoutManager
-                recyclerView.adapter = PokemonAdapter(it)
+                recyclerView.adapter = PokemonAdapter(pokemons)
 
             }
         }

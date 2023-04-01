@@ -4,19 +4,23 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.viewbinding.ViewBinding
+import com.example.increment.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private var number = 0
+
+    private lateinit var viewBinding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        viewBinding = ActivityMainBinding.inflate(layoutInflater)
+        val view = viewBinding.root
+        setContentView(view)
 
-        val titleTextView = findViewById<TextView>(R.id.title)
-        val textButton = findViewById<Button>(R.id.button)
-        textButton.setOnClickListener{
+        viewBinding.textButton.setOnClickListener{
             number++
-            titleTextView.text = "Number: $number"
+            viewBinding.title.text = "Number: $number"
         }
     }
 }

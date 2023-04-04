@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         viewBinding.textButton.setOnClickListener{
             number++
-            viewBinding.title.text = "Number: $number"
+            viewBinding.title.text = viewBinding.NameText.text
         }
     }
 }

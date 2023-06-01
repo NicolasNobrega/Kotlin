@@ -17,6 +17,15 @@ class MainActivity : AppCompatActivity() {
 
         viewBinding.button.setOnClickListener{
             viewBinding.title.text = viewBinding.NameText.text
+
+            startActivity(resultIntent())
         }
+    }
+//sempre que criar uma nova activity verifique e a mesma aparece nos manifests
+    private fun resultIntent() : Intent {
+        val intent = Intent(this,ResultActivity::class.java)
+        intent.putExtra(ResultActivity.ARG_NAME, viewBinding.NameText.text.toString())
+        return intent
+
     }
 }
